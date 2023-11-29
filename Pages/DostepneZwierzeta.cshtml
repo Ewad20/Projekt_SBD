@@ -1,0 +1,59 @@
+﻿@page
+@model DostepneZwierzetaModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zwierzęta do Adopcji</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        body {
+            padding-bottom: 60px; 
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container mt-4 custom-container">
+        <h2>Dostępne Zwierzęta</h2>
+
+        @foreach (var zwierze in Model.Zwierzeta)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h4 class="card-title">@zwierze.imie</h4>
+                    <p class="card-text">Wiek: @zwierze.wiek</p>
+                    <p class="card-text">Płeć: @zwierze.plec</p>
+                    <p class="card-text">Opis: @zwierze.opis</p>
+                    <p class="card-text">Historia: @zwierze.historia</p>
+                    <p class="card-text">Data Przyjęcia: @zwierze.data_przyjecia</p>
+                    <div class="btn-group" role="group">
+                        <form method="post" asp-page-handler="Edit" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
+                            <button type="submit" class="btn btn-primary">Edytuj</button>
+                        </form>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@zwierze.id_zwierzecia">
+                            <button type="submit" class="btn btn-danger">Usuń</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</body>
+</html>

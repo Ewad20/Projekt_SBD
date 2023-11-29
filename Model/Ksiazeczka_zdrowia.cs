@@ -12,8 +12,8 @@ namespace ZwierzePlus.Model
         public string ojciec { get; set; }
         public long id_wpisu { get; set; }
 
-        [ForeignKey("id_wpisu")]
-        public virtual Wpis Wpis { get; set; }
+      //  [ForeignKey("id_wpisu")]
+      //  public virtual Wpis Wpis { get; set; }
 
     }
 }

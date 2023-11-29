@@ -11,11 +11,11 @@ namespace ZwierzePlus.Model
         public long id_zgloszenia { get; set; }
         public long id_opiekuna { get; set; }
 
-        [ForeignKey("id_zgloszenia")]
-        public virtual Zgloszenie_adopcyjne Zgloszenie_Adopcyjne{ get; set; }
+      //  [ForeignKey("id_zgloszenia")]
+      //  public virtual Zgloszenie_adopcyjne Zgloszenie_Adopcyjne{ get; set; }
 
-        [ForeignKey("id_opiekuna")]
-        public virtual Opiekun Opiekun { get; set; }
+     //   [ForeignKey("id_opiekuna")]
+     //   public virtual Opiekun Opiekun { get; set; }
 
     }
 }

@@ -16,6 +16,18 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\mdobr\Desktop\EWA\Systemy_Baz_Danych\ZwierzePlus
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/mdobr/Desktop/EWA/Systemy_Baz_Danych/ZwierzePlus/Pages/DodajZwierzaka.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9kYWpad2llcnpha2EuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mdobr/Desktop/EWA/Systemy_Baz_Danych/ZwierzePlus/Pages/DostepneZwierzeta.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9zdGVwbmVad2llcnpldGEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mdobr/Desktop/EWA/Systemy_Baz_Danych/ZwierzePlus/Pages/EdytujZwierze.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWR5dHVqWndpZXJ6ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/mdobr/Desktop/EWA/Systemy_Baz_Danych/ZwierzePlus/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -24,12 +36,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/mdobr/Desktop/EWA/Systemy_Baz_Danych/ZwierzePlus/Pages/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/mdobr/Desktop/EWA/Systemy_Baz_Danych/ZwierzePlus/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/mdobr/Desktop/EWA/Systemy_Baz_Danych/ZwierzePlus/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mdobr/Desktop/EWA/Systemy_Baz_Danych/ZwierzePlus/Pages/WyslijZgloszenie.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV3lzbGlqWmdsb3N6ZW5pZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/mdobr/Desktop/EWA/Systemy_Baz_Danych/ZwierzePlus/Pages/_ViewImports.cshtml]

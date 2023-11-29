@@ -43,7 +43,7 @@ namespace ZwierzePlus.Migrations
 
                     b.HasKey("id_gatunku");
 
-                    b.ToTable("Gatunek");
+                    b.ToTable("Gatunek", (string)null);
                 });
 
             modelBuilder.Entity("ZwierzePlus.Model.Konto_opiekuna", b =>
@@ -62,17 +62,12 @@ namespace ZwierzePlus.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("id_zwierzecia")
-                        .HasColumnType("bigint");
-
                     b.Property<int>("telefon")
                         .HasColumnType("int");
 
                     b.HasKey("id_konta");
 
-                    b.HasIndex("id_zwierzecia");
-
-                    b.ToTable("Konto_opiekuna");
+                    b.ToTable("Konto_opiekuna", (string)null);
                 });
 
             modelBuilder.Entity("ZwierzePlus.Model.Ksiazeczka_zdrowia", b =>
@@ -99,9 +94,7 @@ namespace ZwierzePlus.Migrations
 
                     b.HasKey("id_ksiazeczki");
 
-                    b.HasIndex("id_wpisu");
-
-                    b.ToTable("Ksiazeczka_Zdrowia");
+                    b.ToTable("Ksiazeczka_Zdrowia", (string)null);
                 });
 
             modelBuilder.Entity("ZwierzePlus.Model.Opiekun", b =>
@@ -135,9 +128,7 @@ namespace ZwierzePlus.Migrations
 
                     b.HasKey("id_opiekuna");
 
-                    b.HasIndex("id_konta");
-
-                    b.ToTable("Opiekun");
+                    b.ToTable("Opiekun", (string)null);
                 });
 
             modelBuilder.Entity("ZwierzePlus.Model.Spotkanie", b =>
@@ -159,11 +150,7 @@ namespace ZwierzePlus.Migrations
 
                     b.HasKey("id_spotkania");
 
-                    b.HasIndex("id_opiekuna");
-
-                    b.HasIndex("id_zgloszenia");
-
-                    b.ToTable("Spotkanie");
+                    b.ToTable("Spotkanie", (string)null);
                 });
 
             modelBuilder.Entity("ZwierzePlus.Model.Szczesliwe_zakonczenie", b =>
@@ -186,11 +173,7 @@ namespace ZwierzePlus.Migrations
 
                     b.HasKey("id_zakonczenia");
 
-                    b.HasIndex("id_zdjecia");
-
-                    b.HasIndex("id_zwierzecia");
-
-                    b.ToTable("Szczesliwe_Zakonczenie");
+                    b.ToTable("Szczesliwe_Zakonczenie", (string)null);
                 });
 
             modelBuilder.Entity("ZwierzePlus.Model.Wpis", b =>
@@ -214,7 +197,7 @@ namespace ZwierzePlus.Migrations
 
                     b.HasKey("id_wpisu");
 
-                    b.ToTable("Wpis");
+                    b.ToTable("Wpis", (string)null);
                 });
 
             modelBuilder.Entity("ZwierzePlus.Model.Zdjecie", b =>
@@ -237,7 +220,7 @@ namespace ZwierzePlus.Migrations
 
                     b.HasKey("id_zdjecia");
 
-                    b.ToTable("Zdjecie");
+                    b.ToTable("Zdjecie", (string)null);
                 });
 
             modelBuilder.Entity("ZwierzePlus.Model.Zgloszenie_adopcyjne", b =>
@@ -272,7 +255,7 @@ namespace ZwierzePlus.Migrations
 
                     b.HasKey("id_zgloszenia");
 
-                    b.ToTable("Zgloszenie_adopcyjne");
+                    b.ToTable("Zgloszenie_adopcyjne", (string)null);
                 });
 
             modelBuilder.Entity("ZwierzePlus.Model.Zwierze", b =>
@@ -289,21 +272,6 @@ namespace ZwierzePlus.Migrations
                     b.Property<string>("historia")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("id_gatunku")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("id_ksiazeczki")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("id_spotkania")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("id_zdjecia")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("id_zgloszenia")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("imie")
                         .IsRequired()
@@ -328,131 +296,7 @@ namespace ZwierzePlus.Migrations
 
                     b.HasKey("id_zwierzecia");
 
-                    b.HasIndex("id_gatunku");
-
-                    b.HasIndex("id_ksiazeczki");
-
-                    b.HasIndex("id_spotkania");
-
-                    b.HasIndex("id_zdjecia");
-
-                    b.HasIndex("id_zgloszenia");
-
-                    b.ToTable("Zwierze");
-                });
-
-            modelBuilder.Entity("ZwierzePlus.Model.Konto_opiekuna", b =>
-                {
-                    b.HasOne("ZwierzePlus.Model.Zwierze", "Zwierze")
-                        .WithMany()
-                        .HasForeignKey("id_zwierzecia")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Zwierze");
-                });
-
-            modelBuilder.Entity("ZwierzePlus.Model.Ksiazeczka_zdrowia", b =>
-                {
-                    b.HasOne("ZwierzePlus.Model.Wpis", "Wpis")
-                        .WithMany()
-                        .HasForeignKey("id_wpisu")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Wpis");
-                });
-
-            modelBuilder.Entity("ZwierzePlus.Model.Opiekun", b =>
-                {
-                    b.HasOne("ZwierzePlus.Model.Konto_opiekuna", "Konto_opiekuna")
-                        .WithMany()
-                        .HasForeignKey("id_konta")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Konto_opiekuna");
-                });
-
-            modelBuilder.Entity("ZwierzePlus.Model.Spotkanie", b =>
-                {
-                    b.HasOne("ZwierzePlus.Model.Opiekun", "Opiekun")
-                        .WithMany()
-                        .HasForeignKey("id_opiekuna")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ZwierzePlus.Model.Zgloszenie_adopcyjne", "Zgloszenie_Adopcyjne")
-                        .WithMany()
-                        .HasForeignKey("id_zgloszenia")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Opiekun");
-
-                    b.Navigation("Zgloszenie_Adopcyjne");
-                });
-
-            modelBuilder.Entity("ZwierzePlus.Model.Szczesliwe_zakonczenie", b =>
-                {
-                    b.HasOne("ZwierzePlus.Model.Zdjecie", "Zdjecie")
-                        .WithMany()
-                        .HasForeignKey("id_zdjecia")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ZwierzePlus.Model.Zwierze", "Zwierze")
-                        .WithMany()
-                        .HasForeignKey("id_zwierzecia")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Zdjecie");
-
-                    b.Navigation("Zwierze");
-                });
-
-            modelBuilder.Entity("ZwierzePlus.Model.Zwierze", b =>
-                {
-                    b.HasOne("ZwierzePlus.Model.Gatunek", "Gatunek")
-                        .WithMany()
-                        .HasForeignKey("id_gatunku")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ZwierzePlus.Model.Ksiazeczka_zdrowia", "Ksiazeczka_zdrowia")
-                        .WithMany()
-                        .HasForeignKey("id_ksiazeczki")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ZwierzePlus.Model.Spotkanie", "Spotkanie")
-                        .WithMany()
-                        .HasForeignKey("id_spotkania")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ZwierzePlus.Model.Zdjecie", "Zdjecie")
-                        .WithMany()
-                        .HasForeignKey("id_zdjecia")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ZwierzePlus.Model.Zgloszenie_adopcyjne", "Zgloszenie_Adopcyjne")
-                        .WithMany()
-                        .HasForeignKey("id_zgloszenia")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Gatunek");
-
-                    b.Navigation("Ksiazeczka_zdrowia");
-
-                    b.Navigation("Spotkanie");
-
-                    b.Navigation("Zdjecie");
-
-                    b.Navigation("Zgloszenie_Adopcyjne");
+                    b.ToTable("Zwierze", (string)null);
                 });
 #pragma warning restore 612, 618
         }

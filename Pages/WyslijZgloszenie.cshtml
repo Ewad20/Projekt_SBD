@@ -1,0 +1,47 @@
+﻿@page
+@model WyslijZgloszenieModel
+
+<h2 class="mt-4">Zgłoszenie Adopcyjne</h2>
+
+<form method="post" class="row g-3">
+    <div class="col-md-6">
+        <div class="form-group mt-4">
+            <label asp-for="Zgloszenie.imie">Imię:</label>
+            <input asp-for="Zgloszenie.imie" class="form-control" />
+            <span asp-validation-for="Zgloszenie.imie" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-4">
+            <label asp-for="Zgloszenie.nazwisko">Nazwisko:</label>
+            <input asp-for="Zgloszenie.nazwisko" class="form-control" />
+            <span asp-validation-for="Zgloszenie.nazwisko" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-4">
+            <label asp-for="Zgloszenie.data_urodzenia">Data urodzenia:</label>
+            <input asp-for="Zgloszenie.data_urodzenia" type="date" class="form-control" />
+            <span asp-validation-for="Zgloszenie.data_urodzenia" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group mt-4">
+            <label asp-for="Zgloszenie.opis_warunkow">Opis warunków:</label>
+            <textarea asp-for="Zgloszenie.opis_warunkow" rows="4" class="form-control"></textarea>
+            <span asp-validation-for="Zgloszenie.opis_warunkow" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-4">
+            <label asp-for="Zgloszenie.inne_zwierzeta">Inne zwierzęta:</label>
+            <input asp-for="Zgloszenie.inne_zwierzeta" type="checkbox" class="form-check-input" />
+        </div>
+
+        <div class="form-group mt-4">
+            <label asp-for="Zgloszenie.tresc">Treść zgłoszenia:</label>
+            <textarea asp-for="Zgloszenie.tresc" rows="4" class="form-control"></textarea>
+            <span asp-validation-for="Zgloszenie.tresc" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Wyślij zgłoszenie</button>
+    </div>
+</form>

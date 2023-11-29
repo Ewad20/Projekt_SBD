@@ -1,0 +1,71 @@
+﻿@page "{id}"
+@model EdytujZwierzeModel
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="container mt-4 custom-container">
+        <h2>Edytuj Zwierzę</h2>
+
+        <form method="post" asp-page-handler="Save" asp-route-id="@Model.Zwierze.id_zwierzecia">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Zwierze.imie">Imię:</label>
+                        <input asp-for="Zwierze.imie" class="form-control" />
+                        <span asp-validation-for="Zwierze.imie" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Zwierze.wiek">Wiek:</label>
+                        <input asp-for="Zwierze.wiek" class="form-control" />
+                        <span asp-validation-for="Zwierze.wiek" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Zwierze.historia">Historia:</label>
+                        <textarea asp-for="Zwierze.historia" rows="4" class="form-control"></textarea>
+                        <span asp-validation-for="Zwierze.historia" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Zwierze.data_przyjecia">Data Przyjęcia:</label>
+                        <input asp-for="Zwierze.data_przyjecia" type="datetime-local" class="form-control" />
+                        <span asp-validation-for="Zwierze.data_przyjecia" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Zwierze.plec">Płeć:</label>
+                        <select asp-for="Zwierze.plec" class="form-control">
+                            <option value="Samiec" selected="@(Model.Zwierze.plec == "Samiec")">Samiec</option>
+                            <option value="Samica" selected="@(Model.Zwierze.plec == "Samica")">Samica</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group mt-4">
+                        <label asp-for="Zwierze.kastracja">Kastracja:</label>
+                        <input asp-for="Zwierze.kastracja" type="checkbox" class="form-check-input" />
+                        <span asp-validation-for="Zwierze.kastracja" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <label asp-for="Zwierze.zaadoptowany">Zaadoptowany:</label>
+                        <input asp-for="Zwierze.zaadoptowany" type="checkbox" class="form-check-input" />
+                        <span asp-validation-for="Zwierze.zaadoptowany" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <label asp-for="Zwierze.opis">Opis:</label>
+                        <textarea asp-for="Zwierze.opis" rows="4" class="form-control"></textarea>
+                        <span asp-validation-for="Zwierze.opis" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Zapisz zmiany</button>
+        </form>
+    </div>
+</body>
+</html>
