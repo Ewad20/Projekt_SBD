@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ZwierzePlus.Model;
 using System.Linq;
-using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 
 namespace ZwierzePlus.Pages
 {
@@ -22,16 +25,28 @@ namespace ZwierzePlus.Pages
         {
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
-                var existingUser = _dbContext.Konto_opiekuna.FirstOrDefault(u => u.email == Input.email);
+                var existingUser = await _dbContext.Konto_opiekuna.FirstOrDefaultAsync(u => u.email == Input.email);
 
                 if (existingUser != null)
                 {
                     if (existingUser.haslo == Input.haslo)
                     {
+                        var claims = new[]
+                        {
+                            new Claim(ClaimTypes.Name, existingUser.email),
+                        };
+
+                        var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var principal = new ClaimsPrincipal(identity);
+
+                        await HttpContext.SignInAsync(
+                            CookieAuthenticationDefaults.AuthenticationScheme,
+                            principal);
+
                         return RedirectToPage("/Index");
                     }
                     else
@@ -41,10 +56,7 @@ namespace ZwierzePlus.Pages
                 }
                 else
                 {
-                    _dbContext.Konto_opiekuna.Add(Input);
-                    _dbContext.SaveChanges();
-
-                    return RedirectToPage("/Index");
+                    ModelState.AddModelError(string.Empty, "Nieprawidłowy użytkownik.");
                 }
             }
             return Page();

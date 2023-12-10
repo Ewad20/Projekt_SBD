@@ -1,0 +1,19 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+	<form method="post" class="form-inline" asp-page="/Logout">
+			<button type="submit" class="nav-link text-dark">Wyloguj się</button>
+	</form>
+}
+else
+{
+        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Login">Utwórz konto</a>  <!--Trzeba zrobić przekierowanie na stronę do rejestracji (ona jeszcze nie istnieje, dlatego jest na login)-->
+                            </li>
+                            <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Login">Zaloguj się</a>
+                            </li>
+         </ul>
+	
+	
+}

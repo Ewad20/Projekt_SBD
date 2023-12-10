@@ -20,18 +20,18 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Login">Zaloguj się</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/DodajZwierzaka">Dodaj Zwierzę</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/DostepneZwierzeta">Zwierzęta do adopcji</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/WyslijZgloszenie">Zgłoszenie adopcyjne</a>
-                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/DodajZwierzaka">Dodaj Zwierzę</a>
+                            </li>
+                        }
                     </ul>
+                    <div class="mr-2">
+                        <partial name="_LoginPartial" />
+                    </div>
                 </div>
             </div>
         </nav>

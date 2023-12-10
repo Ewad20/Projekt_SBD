@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using ZwierzePlus.Model;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ZwierzePlus.Pages
 {
+    [Authorize]
     public class DodajZwierzakaModel : PageModel
     {
         [BindProperty]

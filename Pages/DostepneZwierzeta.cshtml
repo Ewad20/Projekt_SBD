@@ -34,12 +34,18 @@
                     <p class="card-text">Historia: @zwierze.historia</p>
                     <p class="card-text">Data Przyjęcia: @zwierze.data_przyjecia</p>
                     <div class="btn-group" role="group">
-                        <form method="post" asp-page-handler="Edit" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
-                            <button type="submit" class="btn btn-primary">Edytuj</button>
+                        <form method="post" asp-page-handler="Zgloszenie" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
+                            <button type="submit" class="btn btn-primary">Zgłoszenie adopcyjne</button>
                         </form>
-                        <form method="post" asp-page-handler="Delete" asp-route-id="@zwierze.id_zwierzecia">
-                            <button type="submit" class="btn btn-danger">Usuń</button>
-                        </form>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <form method="post" asp-page-handler="Edit" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
+                                    <button type="submit" class="btn btn-primary">Edytuj</button>
+                                </form>
+                                <form method="post" asp-page-handler="Delete" asp-route-id="@zwierze.id_zwierzecia">
+                                    <button type="submit" class="btn btn-danger">Usuń</button>
+                                </form>
+                        }
                     </div>
                 </div>
             </div>

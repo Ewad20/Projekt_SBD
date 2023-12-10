@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mdobr\\Desktop\\EWA\\Systemy_Baz_Danych\\ZwierzePlus\\ZwierzePlus.csproj": {}
+    "C:\\Users\\0Xandra\\source\\repos\\Projekt_SBD\\ZwierzePlus.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mdobr\\Desktop\\EWA\\Systemy_Baz_Danych\\ZwierzePlus\\ZwierzePlus.csproj": {
+    "C:\\Users\\0Xandra\\source\\repos\\Projekt_SBD\\ZwierzePlus.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mdobr\\Desktop\\EWA\\Systemy_Baz_Danych\\ZwierzePlus\\ZwierzePlus.csproj",
+        "projectUniqueName": "C:\\Users\\0Xandra\\source\\repos\\Projekt_SBD\\ZwierzePlus.csproj",
         "projectName": "ZwierzePlus",
-        "projectPath": "C:\\Users\\mdobr\\Desktop\\EWA\\Systemy_Baz_Danych\\ZwierzePlus\\ZwierzePlus.csproj",
-        "packagesPath": "C:\\Users\\mdobr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mdobr\\Desktop\\EWA\\Systemy_Baz_Danych\\ZwierzePlus\\obj\\",
+        "projectPath": "C:\\Users\\0Xandra\\source\\repos\\Projekt_SBD\\ZwierzePlus.csproj",
+        "packagesPath": "C:\\Users\\0Xandra\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\0Xandra\\source\\repos\\Projekt_SBD\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\mdobr\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\0Xandra\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -96,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

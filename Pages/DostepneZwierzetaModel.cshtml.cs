@@ -47,5 +47,19 @@ namespace ZwierzePlus.Pages
 
             return RedirectToPage("./EdytujZwierze", new { id = zwierzeDoEdycji.id_zwierzecia });
         }
+
+        public IActionResult OnPostZgloszenie(long id)
+        {
+            //    var zwierzeDoZgloszenia = _dbContext.Zwierze.Find(id);
+            //
+            //    if (zwierzeDoZgloszenia == null)
+            //    {
+            //        return NotFound();
+            //    }
+
+               return RedirectToPage("./WyslijZgloszenie"); 
+            // Trzeba zmienić modele, żeby do formularza zgłoszenia przekazywać id zwierzęcia. Zgłoszenie musi być przypisane do zwierzaka
+
+        }
     }
 }
