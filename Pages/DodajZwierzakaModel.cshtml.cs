@@ -4,6 +4,8 @@ using ZwierzePlus.Model;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Data.Entity;
 
 namespace ZwierzePlus.Pages
 {
@@ -12,6 +14,7 @@ namespace ZwierzePlus.Pages
     {
         [BindProperty]
         public Zwierze Zwierze { get; set; }
+        [BindProperty]
         public Zdjecie Zdjecie { get; set; }
 
         private readonly SchroniskoContext _dbContext;
@@ -27,15 +30,19 @@ namespace ZwierzePlus.Pages
 
         public IActionResult OnPost()
         {
-            if (ModelState.IsValid)
-            {
-                _dbContext.Add(Zwierze);
-                _dbContext.SaveChanges();
+            Zwierze.Zdjecie = Zdjecie;
+            EntityEntry<Zdjecie> image = _dbContext.Add(Zdjecie);
 
-                var dostepneZwierzeta = _dbContext.Zwierze.ToList();
+            Zwierze.id_zdjecia = image.Entity.id_zdjecia;
 
-                return RedirectToPage("/DostepneZwierzeta", new { zwierzeta = dostepneZwierzeta });
-            }
+         
+            _dbContext.Add(Zwierze);
+            _dbContext.SaveChanges();
+
+            var dostepneZwierzeta = _dbContext.Zwierze.Include(x => x.Zdjecie).ToList();
+
+            return RedirectToPage("/DostepneZwierzeta", new { zwierzeta = dostepneZwierzeta });
+            
 
             return Page();
         }

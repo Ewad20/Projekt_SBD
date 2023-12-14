@@ -21,7 +21,7 @@ namespace ZwierzePlus.Model
         public string opis { get; set; }
         public string historia { get; set; }
         public DateTime  data_przyjecia { get; set; }
-       // public long id_zdjecia { get; set; }
+        public long id_zdjecia { get; set; }
       // public long id_ksiazeczki { get; set; }
      //  public long id_zgloszenia { get; set; }
         public bool zaadoptowany { get; set; }
@@ -30,8 +30,8 @@ namespace ZwierzePlus.Model
     //    [ForeignKey("id_gatunku")]
     //    public virtual Gatunek Gatunek { get; set; }
 
-    //   [ForeignKey("id_zdjecia")]
-    //   public virtual Zdjecie Zdjecie { get; set; }
+         [ForeignKey("id_zdjecia")]
+         public virtual Zdjecie Zdjecie { get; set; }
 
    //     [ForeignKey("id_ksiazeczki")]
     //    public virtual Ksiazeczka_zdrowia Ksiazeczka_zdrowia { get; set; }

@@ -27,12 +27,19 @@
         {
             <div class="card mb-3">
                 <div class="card-body">
-                    <h4 class="card-title">@zwierze.imie</h4>
-                    <p class="card-text">Wiek: @zwierze.wiek</p>
-                    <p class="card-text">Płeć: @zwierze.plec</p>
-                    <p class="card-text">Opis: @zwierze.opis</p>
-                    <p class="card-text">Historia: @zwierze.historia</p>
-                    <p class="card-text">Data Przyjęcia: @zwierze.data_przyjecia</p>
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="card-title">@zwierze.imie</h4>
+                            <p class="card-text">Wiek: @zwierze.wiek</p>
+                            <p class="card-text">Płeć: @zwierze.plec</p>
+                            <p class="card-text">Opis: @zwierze.opis</p>
+                            <p class="card-text">Historia: @zwierze.historia</p>
+                            <p class="card-text">Data Przyjęcia: @zwierze.data_przyjecia</p>
+                        </div>
+                        <div class="col">
+                            <img style="width:100%" src="@zwierze.Zdjecie?.link"/>
+                        </div>
+                    </div>
                     <div class="btn-group" role="group">
                         <form method="post" asp-page-handler="Zgloszenie" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
                             <button type="submit" class="btn btn-primary">Zgłoszenie adopcyjne</button>

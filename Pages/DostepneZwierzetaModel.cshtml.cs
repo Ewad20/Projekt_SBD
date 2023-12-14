@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ZwierzePlus.Model;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace ZwierzePlus.Pages
 {
@@ -18,7 +19,7 @@ namespace ZwierzePlus.Pages
 
         public void OnGet()
         {
-            Zwierzeta = _dbContext.Zwierze.ToList();
+            Zwierzeta = _dbContext.Zwierze.Include(x => x.Zdjecie).ToList();
         }
 
         public IActionResult OnPostDelete(long id)
