@@ -57,6 +57,10 @@
                             <form method="post" asp-page-handler="Delete" asp-route-id="@zwierze.id_zwierzecia">
                                 <button type="submit" class="btn btn-danger">Usuń</button>
                             </form>
+                            <span>&nbsp;&nbsp;</span>
+                            <form method="post" asp-page-handler="Ksiazeczka" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
+                                <button type="submit" class="btn btn-primary">Książeczka Zdrowia</button>
+                            </form>
                         }
                     </div>
                 </div>

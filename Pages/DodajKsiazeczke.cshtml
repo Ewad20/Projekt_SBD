@@ -1,0 +1,25 @@
+﻿@page
+@model DodajKsiazeczke
+
+<h2 class="mt-4">Książeczka zdrowia</h2>
+
+<form method="post" class="row g-3">
+    <div class="col-md-6">
+        <div class="form-group mt-4">
+            <label asp-for="Ksiazeczka.matka">Matka:</label>
+            <input asp-for="Ksiazeczka.matka" class="form-control" />
+            <span asp-validation-for="Ksiazeczka.matka" class="text-danger"></span>
+        </div>
+        <div class="form-group mt-4">
+            <label asp-for="Ksiazeczka.ojciec">Ojciec:</label>
+            <input asp-for="Ksiazeczka.ojciec" class="form-control" />
+            <span asp-validation-for="Ksiazeczka.ojciec" class="text-danger"></span>
+        </div>
+        <div class="form-group mt-4">
+            <label asp-for="Ksiazeczka.data_zalozenia">Data założenia:</label>
+            <input asp-for="Ksiazeczka.data_zalozenia" type="date" class="form-control" />
+            <span asp-validation-for="Ksiazeczka.data_zalozenia" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-success mt-3">Dodaj</button>
+    </div>
+</form>

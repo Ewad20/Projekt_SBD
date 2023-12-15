@@ -74,5 +74,16 @@ namespace ZwierzePlus.Pages
 
             return RedirectToPage("./SzczesliweZakonczenie", new { zwierzeId = zwierzeDoZakonczenia.id_zwierzecia });
         }
+        public IActionResult OnPostKsiazeczka(long id)
+        {
+            var zwierze_ksiazeczka = _dbContext.Zwierze.Find(id);
+
+            if (zwierze_ksiazeczka == null)
+            {
+                return NotFound();
+            }
+
+            return RedirectToPage("./DodajKsiazeczke", new { zwierzeId = zwierze_ksiazeczka.id_zwierzecia });
+        }
     }
 }

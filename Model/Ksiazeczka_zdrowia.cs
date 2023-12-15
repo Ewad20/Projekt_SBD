@@ -8,12 +8,16 @@ namespace ZwierzePlus.Model
         [Key]
         public long id_ksiazeczki { get; set; }
         public DateTime data_zalozenia { get; set; }
-        public string matka { get; set; }
-        public string ojciec { get; set; }
-        public long id_wpisu { get; set; }
+        public string? matka { get; set; }
+        public string? ojciec { get; set; }
+        public long id_zwierzecia { get; set; }
 
-      //  [ForeignKey("id_wpisu")]
-      //  public virtual Wpis Wpis { get; set; }
+        [ForeignKey("id_zwierzecia")]
+        public virtual Zwierze Zwierze { get; set; }
+        //  public long id_wpisu { get; set; } 
+
+        //  [ForeignKey("id_wpisu")]
+        //  public virtual Wpis Wpis { get; set; }
 
     }
 }
