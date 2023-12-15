@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using ZwierzePlus.Model;
 
 namespace ZwierzePlus.Pages
@@ -10,6 +11,9 @@ namespace ZwierzePlus.Pages
     {
         [BindProperty]
         public Zwierze Zwierze { get; set; }
+
+        [BindProperty]
+        public Zdjecie Zdjecie { get; set; }
 
         private readonly SchroniskoContext _dbContext;
 
@@ -39,6 +43,13 @@ namespace ZwierzePlus.Pages
                 return NotFound();
             }
 
+            if (zwierzeDoEdycji.Zdjecie == null)
+            {
+                zwierzeDoEdycji.Zdjecie = new Zdjecie(); 
+            }
+
+            zwierzeDoEdycji.Zdjecie.link = Zdjecie?.link;
+
             zwierzeDoEdycji.imie = Zwierze.imie;
             zwierzeDoEdycji.wiek = Zwierze.wiek;
             zwierzeDoEdycji.opis = Zwierze.opis;
@@ -47,7 +58,7 @@ namespace ZwierzePlus.Pages
             zwierzeDoEdycji.plec = Zwierze.plec;
             zwierzeDoEdycji.kastracja = Zwierze.kastracja;
             zwierzeDoEdycji.zaadoptowany = Zwierze.zaadoptowany;
-
+            zwierzeDoEdycji.Zdjecie.link = Zdjecie.link;
 
             _dbContext.SaveChanges();
 
