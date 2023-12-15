@@ -4,17 +4,17 @@ using ZwierzePlus.Model;
 
 namespace ZwierzePlus.Pages
 {
-    public class WyslijZgloszenieModel : PageModel
+    public class SzczesliweZakonczenie : PageModel
     {
         [BindProperty]
-        public Zgloszenie_adopcyjne Zgloszenie { get; set; }
+        public  Szczesliwe_zakonczenie Zakonczenie { get; set; }
 
         [BindProperty]
         public long ZwierzeId { get; set; }
 
         private readonly SchroniskoContext _dbContext;
 
-        public WyslijZgloszenieModel(SchroniskoContext dbContext)
+        public SzczesliweZakonczenie(SchroniskoContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -33,11 +33,11 @@ namespace ZwierzePlus.Pages
                 return NotFound();
             }
 
-            Zgloszenie.id_zwierzecia = zwierze.id_zwierzecia;
+            Zakonczenie.id_zwierzecia = zwierze.id_zwierzecia;
 
-            Zgloszenie.Zwierze = zwierze;
+            Zakonczenie.Zwierze = zwierze;
 
-            _dbContext.Zgloszenie_adopcyjne.Add(Zgloszenie);
+            _dbContext.Szczesliwe_Zakonczenie.Add(Zakonczenie);
             _dbContext.SaveChanges();
 
             return RedirectToPage("/DostepneZwierzeta");

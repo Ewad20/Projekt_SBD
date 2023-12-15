@@ -4,6 +4,7 @@ using ZwierzePlus.Model;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace ZwierzePlus.Pages
 {
     public class DostepneZwierzetaModel : PageModel
@@ -19,7 +20,9 @@ namespace ZwierzePlus.Pages
 
         public void OnGet()
         {
+            Zwierzeta = _dbContext.Zwierze.ToList();
             Zwierzeta = _dbContext.Zwierze.Include(x => x.Zdjecie).ToList();
+
         }
 
         public IActionResult OnPostDelete(long id)
@@ -51,16 +54,25 @@ namespace ZwierzePlus.Pages
 
         public IActionResult OnPostZgloszenie(long id)
         {
-            //    var zwierzeDoZgloszenia = _dbContext.Zwierze.Find(id);
-            //
-            //    if (zwierzeDoZgloszenia == null)
-            //    {
-            //        return NotFound();
-            //    }
+            var zwierzeDoZgloszenia = _dbContext.Zwierze.Find(id);
 
-               return RedirectToPage("./WyslijZgloszenie"); 
-            // Trzeba zmienić modele, żeby do formularza zgłoszenia przekazywać id zwierzęcia. Zgłoszenie musi być przypisane do zwierzaka
+            if (zwierzeDoZgloszenia == null)
+            {
+                return NotFound();
+            }
 
+            return RedirectToPage("./WyslijZgloszenie", new { zwierzeId = zwierzeDoZgloszenia.id_zwierzecia });
+        }
+        public IActionResult OnPostZakonczenie(long id)
+        {
+            var zwierzeDoZakonczenia = _dbContext.Zwierze.Find(id);
+
+            if (zwierzeDoZakonczenia == null)
+            {
+                return NotFound();
+            }
+
+            return RedirectToPage("./SzczesliweZakonczenie", new { zwierzeId = zwierzeDoZakonczenia.id_zwierzecia });
         }
     }
 }

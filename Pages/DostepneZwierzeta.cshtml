@@ -1,5 +1,5 @@
 ﻿@page
-@model DostepneZwierzetaModel
+@model ZwierzePlus.Pages.DostepneZwierzetaModel
 
 <!DOCTYPE html>
 <html>
@@ -10,13 +10,12 @@
 
     <style>
         body {
-            padding-bottom: 60px; 
+            padding-bottom: 60px;
         }
 
         .card {
             margin-bottom: 20px;
         }
-        
     </style>
 </head>
 <body>
@@ -37,21 +36,27 @@
                             <p class="card-text">Data Przyjęcia: @zwierze.data_przyjecia</p>
                         </div>
                         <div class="col">
-                            <img style="width:100%" src="@zwierze.Zdjecie?.link"/>
+                            <img style="width:100%" src="@zwierze.Zdjecie?.link" />
                         </div>
                     </div>
                     <div class="btn-group" role="group">
                         <form method="post" asp-page-handler="Zgloszenie" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
                             <button type="submit" class="btn btn-primary">Zgłoszenie adopcyjne</button>
                         </form>
+
+                        <form method="post" asp-page-handler="Zakonczenie" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
+                            <button type="submit" class="btn btn-success">Szczęśliwe Zakończenie</button>
+                        </form>
+
                         @if (User.Identity.IsAuthenticated)
                         {
                             <form method="post" asp-page-handler="Edit" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
-                                    <button type="submit" class="btn btn-primary">Edytuj</button>
-                                </form>
-                                <form method="post" asp-page-handler="Delete" asp-route-id="@zwierze.id_zwierzecia">
-                                    <button type="submit" class="btn btn-danger">Usuń</button>
-                                </form>
+                                <button type="submit" class="btn btn-primary">Edytuj</button>
+                            </form>
+
+                            <form method="post" asp-page-handler="Delete" asp-route-id="@zwierze.id_zwierzecia">
+                                <button type="submit" class="btn btn-danger">Usuń</button>
+                            </form>
                         }
                     </div>
                 </div>

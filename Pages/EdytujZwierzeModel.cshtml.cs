@@ -58,7 +58,7 @@ namespace ZwierzePlus.Pages
             zwierzeDoEdycji.plec = Zwierze.plec;
             zwierzeDoEdycji.kastracja = Zwierze.kastracja;
             zwierzeDoEdycji.zaadoptowany = Zwierze.zaadoptowany;
-            zwierzeDoEdycji.Zdjecie.link = Zdjecie.link;
+          
 
             _dbContext.SaveChanges();
 

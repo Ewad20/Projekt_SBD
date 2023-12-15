@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZwierzePlus.Model;
 
@@ -11,9 +12,11 @@ using ZwierzePlus.Model;
 namespace ZwierzePlus.Migrations
 {
     [DbContext(typeof(SchroniskoContext))]
-    partial class SchroniskoContextModelSnapshot : ModelSnapshot
+    [Migration("20231215124329_Init19")]
+    partial class Init19
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,6 +163,9 @@ namespace ZwierzePlus.Migrations
                         .HasColumnType("bigint");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("id_zakonczenia"));
+
+                    b.Property<long>("id_zdjecia")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("id_zwierzecia")
                         .HasColumnType("bigint");

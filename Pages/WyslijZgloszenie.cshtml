@@ -41,7 +41,11 @@
             <textarea asp-for="Zgloszenie.tresc" rows="4" class="form-control"></textarea>
             <span asp-validation-for="Zgloszenie.tresc" class="text-danger"></span>
         </div>
-
+        <div class="form-group mt-4">
+            <label asp-for="Zgloszenie.numer_kontaktowy">Numer telefonu:</label>
+            <input asp-for="Zgloszenie.numer_kontaktowy" class="form-control" />
+            <span asp-validation-for="Zgloszenie.numer_kontaktowy" class="text-danger"></span>
+        </div>
         <button type="submit" class="btn btn-primary mt-3">Wyślij zgłoszenie</button>
     </div>
 </form>

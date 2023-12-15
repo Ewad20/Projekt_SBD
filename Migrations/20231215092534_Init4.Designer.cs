@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZwierzePlus.Model;
 
@@ -11,9 +12,11 @@ using ZwierzePlus.Model;
 namespace ZwierzePlus.Migrations
 {
     [DbContext(typeof(SchroniskoContext))]
-    partial class SchroniskoContextModelSnapshot : ModelSnapshot
+    [Migration("20231215092534_Init4")]
+    partial class Init4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -161,6 +164,9 @@ namespace ZwierzePlus.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("id_zakonczenia"));
 
+                    b.Property<long>("id_zdjecia")
+                        .HasColumnType("bigint");
+
                     b.Property<long>("id_zwierzecia")
                         .HasColumnType("bigint");
 
@@ -169,8 +175,6 @@ namespace ZwierzePlus.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id_zakonczenia");
-
-                    b.HasIndex("id_zwierzecia");
 
                     b.ToTable("Szczesliwe_Zakonczenie");
                 });
@@ -233,9 +237,6 @@ namespace ZwierzePlus.Migrations
                     b.Property<DateTime>("data_urodzenia")
                         .HasColumnType("datetime2");
 
-                    b.Property<long?>("id_zwierzecia")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("imie")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -247,9 +248,6 @@ namespace ZwierzePlus.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("numer_kontaktowy")
-                        .HasColumnType("int");
-
                     b.Property<string>("opis_warunkow")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -259,8 +257,6 @@ namespace ZwierzePlus.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id_zgloszenia");
-
-                    b.HasIndex("id_zwierzecia");
 
                     b.ToTable("Zgloszenie_adopcyjne");
                 });
@@ -281,6 +277,9 @@ namespace ZwierzePlus.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("id_zdjecia")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("id_zgloszenia")
                         .HasColumnType("bigint");
 
                     b.Property<string>("imie")
@@ -311,26 +310,6 @@ namespace ZwierzePlus.Migrations
                     b.ToTable("Zwierze");
                 });
 
-            modelBuilder.Entity("ZwierzePlus.Model.Szczesliwe_zakonczenie", b =>
-                {
-                    b.HasOne("ZwierzePlus.Model.Zwierze", "Zwierze")
-                        .WithMany("Zakonczenia")
-                        .HasForeignKey("id_zwierzecia")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Zwierze");
-                });
-
-            modelBuilder.Entity("ZwierzePlus.Model.Zgloszenie_adopcyjne", b =>
-                {
-                    b.HasOne("ZwierzePlus.Model.Zwierze", "Zwierze")
-                        .WithMany("Zgloszenia")
-                        .HasForeignKey("id_zwierzecia");
-
-                    b.Navigation("Zwierze");
-                });
-
             modelBuilder.Entity("ZwierzePlus.Model.Zwierze", b =>
                 {
                     b.HasOne("ZwierzePlus.Model.Zdjecie", "Zdjecie")
@@ -340,13 +319,6 @@ namespace ZwierzePlus.Migrations
                         .IsRequired();
 
                     b.Navigation("Zdjecie");
-                });
-
-            modelBuilder.Entity("ZwierzePlus.Model.Zwierze", b =>
-                {
-                    b.Navigation("Zakonczenia");
-
-                    b.Navigation("Zgloszenia");
                 });
 #pragma warning restore 612, 618
         }
