@@ -1,0 +1,37 @@
+﻿@page
+@model SpotkanieAdopcyjne
+
+<h2 class="mt-4">Dodaj informację na temat spotkania z potencjalnym adoptującym</h2>
+
+<form method="post" class="row g-3">
+    <div class="form-group col-md-6">
+        <label asp-for="spotkanie.data">Data i godzina spotkania:</label>
+        <input asp-for="spotkanie.data" type="datetime-local" class="form-control" />
+        <span asp-validation-for="spotkanie.data" class="text-danger"></span>
+    </div>
+    <div class="form-group col-md-6">
+        <label asp-for="spotkanie.uwagi">Uwagi:</label>
+        <textarea asp-for="spotkanie.uwagi" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="spotkanie.uwagi" class="text-danger"></span>
+    </div>
+
+    <h3 class="mt-4">Dane potencjalnego adoptującego:</h3>
+    <div class="form-group col-md-6 mt-4">
+        <label asp-for="spotkanie.imie">Imię:</label>
+        <input asp-for="spotkanie.imie" class="form-control" />
+        <span asp-validation-for="spotkanie.imie" class="text-danger"></span>
+    </div>
+    <div class="form-group col-md-6 mt-4">
+        <label asp-for="spotkanie.nazwisko">Nazwisko:</label>
+        <input asp-for="spotkanie.nazwisko" class="form-control" />
+        <span asp-validation-for="spotkanie.nazwisko" class="text-danger"></span>
+    </div>
+    <div class="form-group col-md-6 mt-4">
+        <label asp-for="spotkanie.numer_telefonu">Numer telefonu:</label>
+        <input asp-for="spotkanie.numer_telefonu" class="form-control" />
+        <span asp-validation-for="spotkanie.numer_telefonu" class="text-danger"></span>
+    </div>
+    <div class="col-md-12 mt-4">
+        <button type="submit" class="btn btn-success">Dodaj</button>
+    </div>
+</form>

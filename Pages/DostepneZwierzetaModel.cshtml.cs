@@ -85,5 +85,16 @@ namespace ZwierzePlus.Pages
 
             return RedirectToPage("./DodajKsiazeczke", new { zwierzeId = zwierze_ksiazeczka.id_zwierzecia });
         }
+        public IActionResult OnPostSpotkanie(long id)
+        {
+            var zwierzeDoSpotkania = _dbContext.Zwierze.Find(id);
+
+            if (zwierzeDoSpotkania == null)
+            {
+                return NotFound();
+            }
+
+            return RedirectToPage("./SpotkanieAdopcyjne", new { zwierzeId = zwierzeDoSpotkania.id_zwierzecia });
+        }
     }
 }

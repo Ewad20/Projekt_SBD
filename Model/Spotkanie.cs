@@ -8,14 +8,13 @@ namespace ZwierzePlus.Model
         [Key]
         public long id_spotkania { get; set; }
         public DateTime data { get; set; }
-        public long id_zgloszenia { get; set; }
-        public long id_opiekuna { get; set; }
+        public string? uwagi { get; set; }
+        public string imie { get; set; }
+        public string nazwisko { get; set; }
+        public int numer_telefonu { get; set; }
 
-      //  [ForeignKey("id_zgloszenia")]
-      //  public virtual Zgloszenie_adopcyjne Zgloszenie_Adopcyjne{ get; set; }
-
-     //   [ForeignKey("id_opiekuna")]
-     //   public virtual Opiekun Opiekun { get; set; }
-
+        public long id_zwierzecia { get; set; }
+        [ForeignKey("id_zwierzecia")]
+        public virtual Zwierze Zwierze { get; set; }
     }
 }
