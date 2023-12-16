@@ -35,6 +35,14 @@
                             <p class="card-text">Opis: @zwierze.opis</p>
                             <p class="card-text">Historia: @zwierze.historia</p>
                             <p class="card-text">Data Przyjęcia: @zwierze.data_przyjecia</p>
+                            @if (zwierze.zaadoptowany == true)
+                            {
+                                <p class="card-text">Status: Zaadoptowany!</p>
+                            }
+                            @if (zwierze.zaadoptowany == false)
+                            {
+                                <p class="card-text">Status: Do adopcji!</p>
+                            }
                         </div>
                         <div class="col">
                             <img style="width:100%" src="@zwierze.Zdjecie?.link" />
