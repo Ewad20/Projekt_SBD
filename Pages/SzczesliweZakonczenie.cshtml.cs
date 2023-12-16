@@ -10,6 +10,9 @@ namespace ZwierzePlus.Pages
         public  Szczesliwe_zakonczenie Zakonczenie { get; set; }
 
         [BindProperty]
+        public Zdjecie Zdjecie { get; set; }
+
+        [BindProperty]
         public long ZwierzeId { get; set; }
 
         private readonly SchroniskoContext _dbContext;
@@ -36,6 +39,8 @@ namespace ZwierzePlus.Pages
             Zakonczenie.id_zwierzecia = zwierze.id_zwierzecia;
 
             Zakonczenie.Zwierze = zwierze;
+
+            Zakonczenie.zdjecie = Zdjecie.link;
 
             _dbContext.Szczesliwe_Zakonczenie.Add(Zakonczenie);
             _dbContext.SaveChanges();

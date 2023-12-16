@@ -1,10 +1,9 @@
 ﻿@page
-@model ZwierzePlus.Pages.Zakonczenia
-
+@model ZwierzePlus.Pages.Zgloszenia
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Szczęśliwe Zakończenia</title>
+    <title>Zgłoszenia</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -20,22 +19,25 @@
 </head>
 <body>
     <div class="container mt-4 custom-container">
-        <h2>Szczęśliwe Zakończenia</h2>
+        <h2>Zgłoszenia</h2>
 
-        @foreach (var zakonczenie in Model.Szczesliwe_Zakonczenia)
+        @foreach (var zgloszenie in Model.Zgloszenie_Adopcyjne)
         {
-            <div class="card mb-3">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <p class="card-text"> @zakonczenie.opis</p>
-                        </div>
-                        <div class="col">
-                             <img style="width:100%" src="@zakonczenie.zdjecie" />
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <p class="card-text"> @zgloszenie.imie</p>
+                                <p class="card-text"> @zgloszenie.nazwisko</p>
+                                <p class="card-text"> @zgloszenie.data_urodzenia</p>
+                                <p class="card-text"> @zgloszenie.opis_warunkow</p>
+                                <p class="card-text"> @zgloszenie.inne_zwierzeta</p>
+                                <p class="card-text"> @zgloszenie.tresc</p>
+                                <p class="card-text"> @zgloszenie.numer_kontaktowy</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
         }
     </div>
 

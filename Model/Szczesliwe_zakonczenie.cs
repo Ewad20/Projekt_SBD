@@ -9,7 +9,7 @@ namespace ZwierzePlus.Model
         public long id_zakonczenia{ get; set; }
         public long id_zwierzecia { get; set; }
         public string opis { get; set; }
-       // public long id_zdjecia { get; set; }
+        public string zdjecie { get; set; }
 
         [ForeignKey("id_zwierzecia")]
         public virtual Zwierze Zwierze { get; set; }

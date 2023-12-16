@@ -28,9 +28,15 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Zgloszenia">Zgłoszenia</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/DodajZwierzaka">Dodaj Zwierzę</a>
                             </li>
+                                
                         }
+                        
+
                     </ul>
                     <div class="mr-2">
                         <partial name="_LoginPartial" />
