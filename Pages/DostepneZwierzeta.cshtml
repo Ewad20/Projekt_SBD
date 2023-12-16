@@ -39,14 +39,12 @@
                             <img style="width:100%" src="@zwierze.Zdjecie?.link" />
                         </div>
                     </div>
-                    <div class="btn-group" role="group">
+                    <div class="btn-group pt-3" role="group">
                         <form method="post" asp-page-handler="Zgloszenie" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
                             <button type="submit" class="btn btn-primary">Zgłoszenie adopcyjne</button>
                         </form>
 
-                        <form method="post" asp-page-handler="Zakonczenie" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
-                            <button type="submit" class="btn btn-success">Szczęśliwe Zakończenie</button>
-                        </form>
+                        
 
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -54,12 +52,16 @@
                                 <button type="submit" class="btn btn-primary">Edytuj</button>
                             </form>
 
-                            <form method="post" asp-page-handler="Delete" asp-route-id="@zwierze.id_zwierzecia">
-                                <button type="submit" class="btn btn-danger">Usuń</button>
-                            </form>
+                            
                             <span>&nbsp;&nbsp;</span>
                             <form method="post" asp-page-handler="Ksiazeczka" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
                                 <button type="submit" class="btn btn-primary">Książeczka Zdrowia</button>
+                            </form>
+                            <form method="post" asp-page-handler="Zakonczenie" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
+                                <button type="submit" class="btn btn-success">Szczęśliwe Zakończenie</button>
+                            </form>
+                            <form method="post" asp-page-handler="Delete" asp-route-id="@zwierze.id_zwierzecia">
+                                <button type="submit" class="btn btn-danger">Usuń</button>
                             </form>
                         }
                     </div>
