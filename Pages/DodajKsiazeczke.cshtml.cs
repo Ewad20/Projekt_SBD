@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using ZwierzePlus.Model;
 
 namespace ZwierzePlus.Pages
@@ -31,8 +32,14 @@ namespace ZwierzePlus.Pages
 
         public IActionResult OnGet(long zwierzeId)
         {
-            ZwierzeId = zwierzeId;
-            FetchedKsiazeczka = _dbContext.Ksiazeczka_Zdrowia.FirstOrDefault(x => x.id_zwierzecia == ZwierzeId);
+            if(zwierzeId > 0)
+            {
+                ZwierzeProviderSingleton.SetZwierze(zwierzeId);
+            }
+            
+            ZwierzeId = ZwierzeProviderSingleton.GetZwierze();
+
+            FetchedKsiazeczka = _dbContext.Ksiazeczka_Zdrowia.Include(x=>x.Wpis).FirstOrDefault(x => x.id_zwierzecia == ZwierzeId);
 
             if (FetchedKsiazeczka != null)
             {
@@ -45,7 +52,7 @@ namespace ZwierzePlus.Pages
             return Page();
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPostKsiazeczka()
         {
             var zwierze = _dbContext.Zwierze.Find(ZwierzeId);
 
@@ -64,13 +71,19 @@ namespace ZwierzePlus.Pages
             return RedirectToPage("/DostepneZwierzeta");
         }
 
-        public IActionResult OnPostWpis()
+        public IActionResult OnPostNowyWpis()
         {
+            long zwierzeId = ZwierzeProviderSingleton.GetZwierze();
+
+            var ksiazeczka = _dbContext.Ksiazeczka_Zdrowia.FirstOrDefault(x => x.id_zwierzecia == zwierzeId);
             NowyWpis.data = DateTime.Now;
+            NowyWpis.id_ksiazeczki = ksiazeczka.id_ksiazeczki;
+            NowyWpis.Ksiazeczka = ksiazeczka;
 
             _dbContext.Wpis.Add(NowyWpis);
+            _dbContext.SaveChangesAsync();
 
-            return Page();
+            return RedirectToPage("/DostepneZwierzeta");
         }
     }
 }

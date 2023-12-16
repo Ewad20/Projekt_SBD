@@ -1,6 +1,7 @@
 ﻿@page
 @model DodajKsiazeczke
 @using Pages;
+@using ZwierzePlus.Model;
 
 <h2 class="mt-4">Książeczka zdrowia</h2>
 
@@ -24,6 +25,20 @@
                     </div>
                     <button type="submit" class="btn btn-success mt-3">Dodaj</button>
                  </form>
+
+                 <form method="post" asp-page-handler="NowyWpis">
+                    <div class="form-group mt-4">
+                        <label asp-for="NowyWpis.tytul">Tytuł:</label>
+                        <input asp-for="NowyWpis.tytul" class="form-control" />
+                        <span asp-validation-for="NowyWpis.tytul" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label asp-for="NowyWpis.opis">Opis:</label>
+                        <input asp-for="NowyWpis.opis" class="form-control" />
+                        <span asp-validation-for="NowyWpis.opis" class="text-danger"></span>
+                    </div>
+                    <button on type="submit" class="btn btn-success mt-3">Dodaj wpis</button>
+                 </form>
             </div>
 
             
@@ -37,6 +52,14 @@
                     <p>Ojciec: @Model.FetchedKsiazeczka.ojciec</p>
                     <p>Data dodania: @Model.FetchedKsiazeczka.data_zalozenia</p>
                 </div>
+
+                @foreach(Wpis wpis in Model.FetchedKsiazeczka.Wpis)
+                {
+                    <div style="border: solid; border-radius: 5px; padding: 10px; margin-top: 10px;">
+                        <h5>@wpis.tytul</h5>
+                        <p>@wpis.opis</p>
+                    </div>
+                }
             }
             else
             {
