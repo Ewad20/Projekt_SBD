@@ -14,6 +14,7 @@ namespace ZwierzePlus.Pages
 
         [BindProperty]
         public Zdjecie Zdjecie { get; set; }
+        public List<Gatunek> Gatunki { get; set; }
 
         private readonly SchroniskoContext _dbContext;
 
@@ -31,6 +32,7 @@ namespace ZwierzePlus.Pages
                 return NotFound();
             }
 
+            Gatunki = _dbContext.Gatunek.ToList();
             return Page();
         }
 
@@ -48,7 +50,7 @@ namespace ZwierzePlus.Pages
                 zwierzeDoEdycji.Zdjecie = new Zdjecie(); 
             }
 
-            zwierzeDoEdycji.Zdjecie.link = Zdjecie.link;
+            zwierzeDoEdycji.Zdjecie.link = Zwierze.Zdjecie.link;
 
             zwierzeDoEdycji.imie = Zwierze.imie;
             zwierzeDoEdycji.wiek = Zwierze.wiek;
@@ -58,6 +60,7 @@ namespace ZwierzePlus.Pages
             zwierzeDoEdycji.plec = Zwierze.plec;
             zwierzeDoEdycji.kastracja = Zwierze.kastracja;
             zwierzeDoEdycji.zaadoptowany = Zwierze.zaadoptowany;
+            zwierzeDoEdycji.id_gatunku = Zwierze.id_gatunku;
  
           
             _dbContext.SaveChanges();

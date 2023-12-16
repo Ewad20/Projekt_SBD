@@ -24,6 +24,20 @@ namespace ZwierzePlus.Pages
             //  Szczesliwe_Zakonczenia = _dbContext.Szczesliwe_zakonczenie.Include(x => x.Zdjecie).ToList();
 
         }
+        public IActionResult OnPostDelete(long id)
+        {
+            var zakonczenieeDoUsuniecia = _dbContext.Szczesliwe_Zakonczenie.Find(id);
+
+            if (zakonczenieeDoUsuniecia == null)
+            {
+                return NotFound();
+            }
+
+            _dbContext.Szczesliwe_Zakonczenie.Remove(zakonczenieeDoUsuniecia);
+            _dbContext.SaveChanges();
+
+            return RedirectToPage("./Zakonczenia");
+        }
     }
 }
 

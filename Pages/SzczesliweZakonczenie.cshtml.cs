@@ -45,7 +45,8 @@ namespace ZwierzePlus.Pages
             _dbContext.Szczesliwe_Zakonczenie.Add(Zakonczenie);
             _dbContext.SaveChanges();
 
-            return RedirectToPage("/DostepneZwierzeta");
+            return RedirectToPage("/Zakonczenia");
         }
+
     }
 }

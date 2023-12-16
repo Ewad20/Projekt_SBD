@@ -28,6 +28,20 @@ namespace ZwierzePlus.Pages
         {
             Gatunki = _dbContext.Gatunek.ToList();
         }
+        public IActionResult OnPostDelete(long id)
+        {
+            var gatunekDoUsuniecia = _dbContext.Gatunek.Find(id);
+
+            if (gatunekDoUsuniecia == null)
+            {
+                return NotFound();
+            }
+
+            _dbContext.Gatunek.Remove(gatunekDoUsuniecia);
+            _dbContext.SaveChanges();
+
+            return RedirectToPage("./DodajGatunek");
+        }
 
         public IActionResult OnPost()
         {

@@ -34,6 +34,14 @@
                              <img style="width:100%" src="@zakonczenie.zdjecie" />
                         </div>
                     </div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="btn-group pt-3" role="group">
+                            <form method="post" asp-page-handler="Delete" asp-route-id="@zakonczenie.id_zakonczenia">
+                                <button type="submit" class="btn btn-danger">Usuń</button>
+                            </form>
+                        </div>
+                    }
                 </div>
             </div>
         }

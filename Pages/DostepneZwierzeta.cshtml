@@ -43,9 +43,12 @@
                     @if (zwierze.zaadoptowany == false)
                     {
                         <div class="btn-group pt-3" role="group">
-                            <form method="post" asp-page-handler="Zgloszenie" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
-                                <button type="submit" class="btn btn-primary">Wyślij Zgłoszenie Adopcyjne</button>
-                            </form>
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <form method="post" asp-page-handler="Zgloszenie" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
+                                    <button type="submit" class="btn btn-primary">Wyślij Zgłoszenie Adopcyjne</button>
+                                </form>
+                            }
                             @if (User.Identity.IsAuthenticated)
                             {
                                 <form method="post" asp-page-handler="WyswietlZgloszenia" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
