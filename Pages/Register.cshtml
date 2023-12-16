@@ -1,0 +1,50 @@
+﻿@page
+@model ZwierzePlus.Pages.RegisterModel
+
+<h2 class="mt-4">Zarejestruj się</h2>
+
+<form method="post" class="row g-3" enctype="multipart/form-data">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="Opiekun.imie">Imię:</label>
+            <input asp-for="Opiekun.imie" class="form-control" />
+            <span asp-validation-for="Opiekun.imie" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Opiekun.nazwisko">Nazwisko:</label>
+            <input asp-for="Opiekun.nazwisko" class="form-control" />
+            <span asp-validation-for="Opiekun.nazwisko" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Opiekun.kod">Kod weryfikacyjny:</label>
+            <input asp-for="Opiekun.kod" class="form-control" />
+            <span asp-validation-for="Opiekun.kod" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="Konto.email">Email:</label>
+            <input asp-for="Konto.email" class="form-control" />
+            <span asp-validation-for="Konto.email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Konto.telefon">Telefon:</label>
+            <input asp-for="Konto.telefon" class="form-control" />
+            <span asp-validation-for="Konto.telefon" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Konto.haslo">Hasło:</label>
+            <input asp-for="Konto.haslo" type="password" class="form-control" />
+            <span asp-validation-for="Konto.haslo" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-primary">Rejestruj</button>
+    </div>
+</form>

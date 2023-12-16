@@ -10,5 +10,9 @@ namespace ZwierzePlus.Model
         public DateTime data { get; set; }
         public string tytul { get; set; }
         public string opis{ get; set; }
+        public long id_ksiazeczki { get; set; }
+
+        [ForeignKey("id_ksiazeczki")]
+        public virtual Ksiazeczka_zdrowia Ksiazeczka { get; set; }
     }
 }
