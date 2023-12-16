@@ -24,10 +24,6 @@ namespace ZwierzePlus.Model
 
         [ForeignKey("id_zdjecia")]
         public virtual Zdjecie Zdjecie { get; set; }
-        public long? id_ksiazeczki { get; set; }
-
-        [ForeignKey("id_ksiazeczki")]
-        public virtual Ksiazeczka_zdrowia Ksiazeczka { get; set; }
         public virtual ICollection<Zgloszenie_adopcyjne> Zgloszenia { get; set; }
         public bool zaadoptowany { get; set; }
         public virtual ICollection<Szczesliwe_zakonczenie> Zakonczenia { get; set; }

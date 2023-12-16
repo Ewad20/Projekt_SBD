@@ -111,10 +111,14 @@ namespace ZwierzePlus.Migrations
                     b.Property<DateTime>("data_zatrudnienia")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("id_konta")
+                    b.Property<long?>("id_konta")
                         .HasColumnType("bigint");
 
                     b.Property<string>("imie")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("kod")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -139,6 +143,9 @@ namespace ZwierzePlus.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("id_spotkania"));
 
+                    b.Property<long?>("Zwierzeid_zwierzecia")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("data")
                         .HasColumnType("datetime2");
 
@@ -149,6 +156,8 @@ namespace ZwierzePlus.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("id_spotkania");
+
+                    b.HasIndex("Zwierzeid_zwierzecia");
 
                     b.ToTable("Spotkanie");
                 });
@@ -190,6 +199,9 @@ namespace ZwierzePlus.Migrations
                     b.Property<DateTime>("data")
                         .HasColumnType("datetime2");
 
+                    b.Property<long>("id_ksiazeczki")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("opis")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -199,6 +211,8 @@ namespace ZwierzePlus.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id_wpisu");
+
+                    b.HasIndex("id_ksiazeczki");
 
                     b.ToTable("Wpis");
                 });
@@ -284,6 +298,9 @@ namespace ZwierzePlus.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long>("id_gatunku")
+                        .HasColumnType("bigint");
+
                     b.Property<long>("id_zdjecia")
                         .HasColumnType("bigint");
 
@@ -326,6 +343,13 @@ namespace ZwierzePlus.Migrations
                     b.Navigation("Zwierze");
                 });
 
+            modelBuilder.Entity("ZwierzePlus.Model.Spotkanie", b =>
+                {
+                    b.HasOne("ZwierzePlus.Model.Zwierze", null)
+                        .WithMany("Spotkania")
+                        .HasForeignKey("Zwierzeid_zwierzecia");
+                });
+
             modelBuilder.Entity("ZwierzePlus.Model.Szczesliwe_zakonczenie", b =>
                 {
                     b.HasOne("ZwierzePlus.Model.Zwierze", "Zwierze")
@@ -335,6 +359,17 @@ namespace ZwierzePlus.Migrations
                         .IsRequired();
 
                     b.Navigation("Zwierze");
+                });
+
+            modelBuilder.Entity("ZwierzePlus.Model.Wpis", b =>
+                {
+                    b.HasOne("ZwierzePlus.Model.Ksiazeczka_zdrowia", "Ksiazeczka")
+                        .WithMany()
+                        .HasForeignKey("id_ksiazeczki")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ksiazeczka");
                 });
 
             modelBuilder.Entity("ZwierzePlus.Model.Zgloszenie_adopcyjne", b =>
@@ -359,6 +394,8 @@ namespace ZwierzePlus.Migrations
 
             modelBuilder.Entity("ZwierzePlus.Model.Zwierze", b =>
                 {
+                    b.Navigation("Spotkania");
+
                     b.Navigation("Zakonczenia");
 
                     b.Navigation("Zgloszenia");

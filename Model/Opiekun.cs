@@ -16,7 +16,7 @@ namespace ZwierzePlus.Model
         public DateTime data_zatrudnienia { get; set; }
         [Required(ErrorMessage = "Kod jest wymagany.")]
         public string kod { get; set; }
-        public long id_konta { get; set; }
+        public long? id_konta { get; set; }
 
       //  [ForeignKey ("id_konta")]
      //   public virtual Konto_opiekuna Konto_opiekuna { get; set; }
