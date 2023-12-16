@@ -68,7 +68,7 @@ namespace ZwierzePlus.Pages
             _dbContext.Ksiazeczka_Zdrowia.Add(Ksiazeczka);
             _dbContext.SaveChanges();
 
-            return RedirectToPage("/DostepneZwierzeta");
+            return RedirectToPage("/DodajKsiazeczke");
         }
 
         public IActionResult OnPostNowyWpis()
@@ -83,7 +83,7 @@ namespace ZwierzePlus.Pages
             _dbContext.Wpis.Add(NowyWpis);
             _dbContext.SaveChangesAsync();
 
-            return RedirectToPage("/DostepneZwierzeta");
+            return RedirectToPage("/DodajKsiazeczke");
         }
     }
 }
