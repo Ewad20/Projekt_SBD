@@ -25,6 +25,8 @@ namespace ZwierzePlus
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             }).AddCookie();
 
+            builder.Services.AddServerSideBlazor();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

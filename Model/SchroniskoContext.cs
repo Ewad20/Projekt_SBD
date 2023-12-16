@@ -22,6 +22,11 @@ namespace ZwierzePlus.Model
         { 
 
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Ksiazeczka_zdrowia>().HasMany(x => x.Wpis).WithOne(x => x.Ksiazeczka);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
 // Jak będę pisać modele to do Init dodaje 2,3,4 

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ZwierzePlus.Migrations
 {
     /// <inheritdoc />
-    public partial class Init1 : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -53,7 +53,7 @@ namespace ZwierzePlus.Migrations
                     plec = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     data_zatrudnienia = table.Column<DateTime>(type: "datetime2", nullable: false),
                     kod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    id_konta = table.Column<long>(type: "bigint", nullable: false)
+                    id_konta = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -96,6 +96,12 @@ namespace ZwierzePlus.Migrations
                 {
                     table.PrimaryKey("PK_Zwierze", x => x.id_zwierzecia);
                     table.ForeignKey(
+                        name: "FK_Zwierze_Gatunek_id_gatunku",
+                        column: x => x.id_gatunku,
+                        principalTable: "Gatunek",
+                        principalColumn: "id_gatunku",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Zwierze_Zdjecie_id_zdjecia",
                         column: x => x.id_zdjecia,
                         principalTable: "Zdjecie",
@@ -132,18 +138,21 @@ namespace ZwierzePlus.Migrations
                     id_spotkania = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     data = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    id_zgloszenia = table.Column<long>(type: "bigint", nullable: false),
-                    id_opiekuna = table.Column<long>(type: "bigint", nullable: false),
-                    Zwierzeid_zwierzecia = table.Column<long>(type: "bigint", nullable: true)
+                    uwagi = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    imie = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    nazwisko = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    numer_telefonu = table.Column<int>(type: "int", nullable: false),
+                    id_zwierzecia = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Spotkanie", x => x.id_spotkania);
                     table.ForeignKey(
-                        name: "FK_Spotkanie_Zwierze_Zwierzeid_zwierzecia",
-                        column: x => x.Zwierzeid_zwierzecia,
+                        name: "FK_Spotkanie_Zwierze_id_zwierzecia",
+                        column: x => x.id_zwierzecia,
                         principalTable: "Zwierze",
-                        principalColumn: "id_zwierzecia");
+                        principalColumn: "id_zwierzecia",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -220,9 +229,9 @@ namespace ZwierzePlus.Migrations
                 column: "id_zwierzecia");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Spotkanie_Zwierzeid_zwierzecia",
+                name: "IX_Spotkanie_id_zwierzecia",
                 table: "Spotkanie",
-                column: "Zwierzeid_zwierzecia");
+                column: "id_zwierzecia");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Szczesliwe_Zakonczenie_id_zwierzecia",
@@ -240,6 +249,11 @@ namespace ZwierzePlus.Migrations
                 column: "id_zwierzecia");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Zwierze_id_gatunku",
+                table: "Zwierze",
+                column: "id_gatunku");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Zwierze_id_zdjecia",
                 table: "Zwierze",
                 column: "id_zdjecia");
@@ -248,9 +262,6 @@ namespace ZwierzePlus.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Gatunek");
-
             migrationBuilder.DropTable(
                 name: "Konto_opiekuna");
 
@@ -274,6 +285,9 @@ namespace ZwierzePlus.Migrations
 
             migrationBuilder.DropTable(
                 name: "Zwierze");
+
+            migrationBuilder.DropTable(
+                name: "Gatunek");
 
             migrationBuilder.DropTable(
                 name: "Zdjecie");

@@ -12,8 +12,8 @@ using ZwierzePlus.Model;
 namespace ZwierzePlus.Migrations
 {
     [DbContext(typeof(SchroniskoContext))]
-    [Migration("20231216102243_Init1")]
-    partial class Init1
+    [Migration("20231216172432_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -114,7 +114,7 @@ namespace ZwierzePlus.Migrations
                     b.Property<DateTime>("data_zatrudnienia")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("id_konta")
+                    b.Property<long?>("id_konta")
                         .HasColumnType("bigint");
 
                     b.Property<string>("imie")
@@ -146,21 +146,29 @@ namespace ZwierzePlus.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("id_spotkania"));
 
-                    b.Property<long?>("Zwierzeid_zwierzecia")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime>("data")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("id_opiekuna")
+                    b.Property<long>("id_zwierzecia")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("id_zgloszenia")
-                        .HasColumnType("bigint");
+                    b.Property<string>("imie")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("nazwisko")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("numer_telefonu")
+                        .HasColumnType("int");
+
+                    b.Property<string>("uwagi")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id_spotkania");
 
-                    b.HasIndex("Zwierzeid_zwierzecia");
+                    b.HasIndex("id_zwierzecia");
 
                     b.ToTable("Spotkanie");
                 });
@@ -330,6 +338,8 @@ namespace ZwierzePlus.Migrations
 
                     b.HasKey("id_zwierzecia");
 
+                    b.HasIndex("id_gatunku");
+
                     b.HasIndex("id_zdjecia");
 
                     b.ToTable("Zwierze");
@@ -348,9 +358,13 @@ namespace ZwierzePlus.Migrations
 
             modelBuilder.Entity("ZwierzePlus.Model.Spotkanie", b =>
                 {
-                    b.HasOne("ZwierzePlus.Model.Zwierze", null)
+                    b.HasOne("ZwierzePlus.Model.Zwierze", "Zwierze")
                         .WithMany("Spotkania")
-                        .HasForeignKey("Zwierzeid_zwierzecia");
+                        .HasForeignKey("id_zwierzecia")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Zwierze");
                 });
 
             modelBuilder.Entity("ZwierzePlus.Model.Szczesliwe_zakonczenie", b =>
@@ -367,7 +381,7 @@ namespace ZwierzePlus.Migrations
             modelBuilder.Entity("ZwierzePlus.Model.Wpis", b =>
                 {
                     b.HasOne("ZwierzePlus.Model.Ksiazeczka_zdrowia", "Ksiazeczka")
-                        .WithMany()
+                        .WithMany("Wpis")
                         .HasForeignKey("id_ksiazeczki")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -386,13 +400,26 @@ namespace ZwierzePlus.Migrations
 
             modelBuilder.Entity("ZwierzePlus.Model.Zwierze", b =>
                 {
+                    b.HasOne("ZwierzePlus.Model.Gatunek", "Gatunek")
+                        .WithMany()
+                        .HasForeignKey("id_gatunku")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ZwierzePlus.Model.Zdjecie", "Zdjecie")
                         .WithMany()
                         .HasForeignKey("id_zdjecia")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Gatunek");
+
                     b.Navigation("Zdjecie");
+                });
+
+            modelBuilder.Entity("ZwierzePlus.Model.Ksiazeczka_zdrowia", b =>
+                {
+                    b.Navigation("Wpis");
                 });
 
             modelBuilder.Entity("ZwierzePlus.Model.Zwierze", b =>
