@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ZwierzePlus.Model;
 
 namespace ZwierzePlus.Pages
 {
+    [Authorize]
     public class SpotkanieAdopcyjne : PageModel
     {
         [BindProperty]

@@ -20,10 +20,8 @@ namespace ZwierzePlus.Pages
 
         public void OnGet()
         {
-            Zwierzeta = _dbContext.Zwierze.ToList();
-            Zwierzeta = _dbContext.Zwierze.Include(x => x.Zdjecie).ToList();
-
-        }
+			Zwierzeta = _dbContext.Zwierze.Include(x => x.Gatunek).Include(x => x.Zdjecie).ToList();
+		}
 
         public IActionResult OnPostDelete(long id)
         {
@@ -50,6 +48,18 @@ namespace ZwierzePlus.Pages
             }
 
             return RedirectToPage("./EdytujZwierze", new { id = zwierzeDoEdycji.id_zwierzecia });
+        }
+
+        public IActionResult OnPostWyswietlZgloszenia(long id)
+        {
+            var zwierzeDoZgloszenia = _dbContext.Zwierze.Find(id);
+
+            if (zwierzeDoZgloszenia == null)
+            {
+                return NotFound();
+            }
+
+            return RedirectToPage("./Zgloszenia", new { zwierzeId = zwierzeDoZgloszenia.id_zwierzecia });
         }
 
         public IActionResult OnPostZgloszenie(long id)
@@ -95,6 +105,17 @@ namespace ZwierzePlus.Pages
             }
 
             return RedirectToPage("./SpotkanieAdopcyjne", new { zwierzeId = zwierzeDoSpotkania.id_zwierzecia });
+        }
+        public IActionResult OnPostWyswietlSpotkania(long id)
+        {
+            var zwierze = _dbContext.Zwierze.Find(id);
+
+            if (zwierze == null)
+            {
+                return NotFound();
+            }
+
+            return RedirectToPage("./Spotkania", new { zwierzeId = zwierze.id_zwierzecia });
         }
     }
 }

@@ -16,6 +16,9 @@ namespace ZwierzePlus.Pages
         public Zwierze Zwierze { get; set; }
         [BindProperty]
         public Zdjecie Zdjecie { get; set; }
+        [BindProperty]
+        public Gatunek Gatunek { get; set; }
+        public List<Gatunek> Gatunki { get; set; }
 
         private readonly SchroniskoContext _dbContext;
 
@@ -26,6 +29,7 @@ namespace ZwierzePlus.Pages
 
         public void OnGet()
         {
+            Gatunki = _dbContext.Gatunek.ToList();
         }
 
         public IActionResult OnPost()
@@ -35,7 +39,14 @@ namespace ZwierzePlus.Pages
 
             Zwierze.id_zdjecia = image.Entity.id_zdjecia;
 
-         
+            var gatunek = _dbContext.Gatunek.Find(Zwierze.id_gatunku);
+
+            if (gatunek == null)
+            {
+                return NotFound();
+            }
+            Zwierze.Gatunek = gatunek;
+
             _dbContext.Add(Zwierze);
             _dbContext.SaveChanges();
 

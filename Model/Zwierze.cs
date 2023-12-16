@@ -16,6 +16,8 @@ namespace ZwierzePlus.Model
         public int wiek { get; set; }
         public string plec { get; set; }
         public long id_gatunku { get; set; }
+        [ForeignKey("id_gatunku")]
+        public virtual Gatunek Gatunek { get; set; }
         public bool kastracja { get; set; }
         public string opis { get; set; }
         public string historia { get; set; }

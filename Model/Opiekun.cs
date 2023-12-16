@@ -12,6 +12,7 @@ namespace ZwierzePlus.Model
         [Required(ErrorMessage = "Nazwisko jest wymagane.")]
         public string nazwisko { get; set; }
         public DateTime data_urodzenia{ get; set; }
+        [Required(ErrorMessage = "Płeć jest wymagana.")]
         public string plec { get; set; }
         public DateTime data_zatrudnienia { get; set; }
         [Required(ErrorMessage = "Kod jest wymagany.")]

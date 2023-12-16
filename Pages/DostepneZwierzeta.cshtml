@@ -31,6 +31,7 @@
                             <h4 class="card-title">@zwierze.imie</h4>
                             <p class="card-text">Wiek: @zwierze.wiek</p>
                             <p class="card-text">Płeć: @zwierze.plec</p>
+                            <p class="card-text">Typ rasy: @zwierze.Gatunek.typ_rasy</p>
                             <p class="card-text">Opis: @zwierze.opis</p>
                             <p class="card-text">Historia: @zwierze.historia</p>
                             <p class="card-text">Data Przyjęcia: @zwierze.data_przyjecia</p>
@@ -39,31 +40,52 @@
                             <img style="width:100%" src="@zwierze.Zdjecie?.link" />
                         </div>
                     </div>
-                    <div class="btn-group pt-3" role="group">
-                        <form method="post" asp-page-handler="Zgloszenie" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
-                            <button type="submit" class="btn btn-primary">Zgłoszenie adopcyjne</button>
-                        </form>
-                        <form method="post" asp-page-handler="Zakonczenie" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
-                            <button type="submit" class="btn btn-success">Szczęśliwe Zakończenie</button>
-                        </form>
-
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <form method="post" asp-page-handler="Ksiazeczka" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
-                                <button type="submit" class="btn btn-primary">Książeczka Zdrowia</button>
+                    @if (zwierze.zaadoptowany == false)
+                    {
+                        <div class="btn-group pt-3" role="group">
+                            <form method="post" asp-page-handler="Zgloszenie" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
+                                <button type="submit" class="btn btn-primary">Wyślij Zgłoszenie Adopcyjne</button>
                             </form>
-                            <form method="post" asp-page-handler="Spotkanie" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
-                                <button type="submit" class="btn btn-success">Spotkanie</button>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <form method="post" asp-page-handler="WyswietlZgloszenia" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
+                                    <button type="submit" class="btn btn-primary">Wyświetl Zgłoszenia</button>
+                                </form>
+                                <form method="post" asp-page-handler="Ksiazeczka" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
+                                    <button type="submit" class="btn btn-primary">Książeczka Zdrowia</button>
+                                </form>
+                                <form method="post" asp-page-handler="Spotkanie" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
+                                    <button type="submit" class="btn btn-success">Utwórz Spotkanie</button>
+                                </form>
+                                <form method="post" asp-page-handler="WyswietlSpotkania" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
+                                    <button type="submit" class="btn btn-success">Wyświetl Spotkania</button>
+                                </form>
+                                <form method="post" asp-page-handler="Edit" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
+                                    <button type="submit" class="btn btn-primary">Edytuj</button>
+                                </form>
+                                <form method="post" asp-page-handler="Delete" asp-route-id="@zwierze.id_zwierzecia">
+                                    <button type="submit" class="btn btn-danger">Usuń</button>
+                                </form>
+                            }
+                        </div>
+                    }
+                    @if (zwierze.zaadoptowany == true)
+                    {
+                        <div class="btn-group pt-3" role="group">
+                            <form method="post" asp-page-handler="Zakonczenie" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
+                                <button type="submit" class="btn btn-success">Dodaj Szczęśliwe Zakończenie</button>
                             </form>
-                            <form method="post" asp-page-handler="Edit" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
-                                <button type="submit" class="btn btn-primary">Edytuj</button>
-                            </form>
-                            <form method="post" asp-page-handler="Delete" asp-route-id="@zwierze.id_zwierzecia">
-                                <button type="submit" class="btn btn-danger">Usuń</button>
-                            </form>
-                           
-                        }
-                    </div>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <form method="post" asp-page-handler="Edit" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
+                                    <button type="submit" class="btn btn-primary">Edytuj</button>
+                                </form>
+                                <form method="post" asp-page-handler="Delete" asp-route-id="@zwierze.id_zwierzecia">
+                                    <button type="submit" class="btn btn-danger">Usuń</button>
+                                </form>
+                            }
+                        </div>
+                    }
                 </div>
             </div>
         }

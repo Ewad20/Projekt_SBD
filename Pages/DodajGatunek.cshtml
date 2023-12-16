@@ -1,0 +1,75 @@
+﻿@page
+@model ZwierzePlus.Pages.DodajGatunekModel
+@if (!ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <p><strong>Błąd!</strong> Sprawdź poprawność wprowadzonych danych.</p>
+        <ul>
+            @foreach (var key in ModelState.Keys)
+            {
+                foreach (var error in ModelState[key].Errors)
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            }
+        </ul>
+    </div>
+}
+
+<h2 class="mt-4">Dodaj gatunek</h2>
+
+<form method="post" class="row g-3" enctype="multipart/form-data">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="Gatunek.nazwa">Nazwa (Pies/Kot/itd.):</label>
+            <input asp-for="Gatunek.nazwa" class="form-control" />
+            <span asp-validation-for="Gatunek.nazwa" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Gatunek.typ_rasy">Typ rasy (Labrador/Maine Coon/itd.):</label>
+            <input asp-for="Gatunek.typ_rasy" class="form-control" />
+            <span asp-validation-for="Gatunek.typ_rasy" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Gatunek.max_wysokosc">Maksymalna wysokość:</label>
+            <input asp-for="Gatunek.max_wysokosc" class="form-control" />
+            <span asp-validation-for="Gatunek.max_wysokosc" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-primary">Rejestruj</button>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <h2 class="mt-4">Dostępne gatunki</h2>
+
+    <div class="container mt-4 custom-container">
+        @foreach (var gatunek in Model.Gatunki)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">Gatunek: @gatunek.nazwa</p>
+                        </div>
+                        <div class="col">
+                            <p class="card-text">Typ rasy: @gatunek.typ_rasy</p>
+                        </div>
+                        <div class="col">
+                            <p class="card-text">Maksymalna możliwa wysokość: @gatunek.max_wysokosc cm</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</form>

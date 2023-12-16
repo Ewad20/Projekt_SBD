@@ -24,7 +24,7 @@ namespace ZwierzePlus.Pages
 
         public IActionResult OnGet(long id)
         {
-            Zwierze = _dbContext.Zwierze.Find(id);
+            Zwierze = _dbContext.Zwierze.Include(x => x.Gatunek).Include(x => x.Zdjecie).FirstOrDefault(z => z.id_zwierzecia == id);
 
             if (Zwierze == null)
             {
@@ -36,7 +36,7 @@ namespace ZwierzePlus.Pages
 
         public IActionResult OnPostSave(long id)
         {
-            var zwierzeDoEdycji = _dbContext.Zwierze.Find(id);
+            var zwierzeDoEdycji = _dbContext.Zwierze.Include(x => x.Gatunek).Include(x => x.Zdjecie).FirstOrDefault(z => z.id_zwierzecia == id);
 
             if (zwierzeDoEdycji == null)
             {
@@ -48,7 +48,7 @@ namespace ZwierzePlus.Pages
                 zwierzeDoEdycji.Zdjecie = new Zdjecie(); 
             }
 
-            zwierzeDoEdycji.Zdjecie.link = Zdjecie?.link;
+            zwierzeDoEdycji.Zdjecie.link = Zdjecie.link;
 
             zwierzeDoEdycji.imie = Zwierze.imie;
             zwierzeDoEdycji.wiek = Zwierze.wiek;
@@ -58,8 +58,8 @@ namespace ZwierzePlus.Pages
             zwierzeDoEdycji.plec = Zwierze.plec;
             zwierzeDoEdycji.kastracja = Zwierze.kastracja;
             zwierzeDoEdycji.zaadoptowany = Zwierze.zaadoptowany;
+ 
           
-
             _dbContext.SaveChanges();
 
             return RedirectToPage("./DostepneZwierzeta");

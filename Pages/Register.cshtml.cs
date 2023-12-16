@@ -30,10 +30,6 @@ namespace ZwierzePlus.Pages
 
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
 
             var opiekun = _dbContext.Opiekun.FirstOrDefault(o =>
                 o.imie == Opiekun.imie &&
@@ -43,6 +39,12 @@ namespace ZwierzePlus.Pages
 
             if (opiekun != null)
             {
+                if (opiekun.id_konta != null)
+                {
+                    ModelState.AddModelError(string.Empty, "Konto ju¿ istnieje.");
+                    return Page();
+                }
+
                 var noweKonto = new Konto_opiekuna
                 {
                     email = Konto.email,
@@ -51,6 +53,9 @@ namespace ZwierzePlus.Pages
                 };
 
                 _dbContext.Konto_opiekuna.Add(noweKonto);
+                _dbContext.SaveChanges();
+
+                opiekun.id_konta = noweKonto.id_konta;
                 _dbContext.SaveChanges();
 
                 return RedirectToPage("/Login");
