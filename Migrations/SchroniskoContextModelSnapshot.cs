@@ -335,6 +335,8 @@ namespace ZwierzePlus.Migrations
 
                     b.HasKey("id_zwierzecia");
 
+                    b.HasIndex("id_gatunku");
+
                     b.HasIndex("id_zdjecia");
 
                     b.ToTable("Zwierze");
@@ -376,7 +378,7 @@ namespace ZwierzePlus.Migrations
             modelBuilder.Entity("ZwierzePlus.Model.Wpis", b =>
                 {
                     b.HasOne("ZwierzePlus.Model.Ksiazeczka_zdrowia", "Ksiazeczka")
-                        .WithMany()
+                        .WithMany("Wpis")
                         .HasForeignKey("id_ksiazeczki")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -395,13 +397,26 @@ namespace ZwierzePlus.Migrations
 
             modelBuilder.Entity("ZwierzePlus.Model.Zwierze", b =>
                 {
+                    b.HasOne("ZwierzePlus.Model.Gatunek", "Gatunek")
+                        .WithMany()
+                        .HasForeignKey("id_gatunku")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ZwierzePlus.Model.Zdjecie", "Zdjecie")
                         .WithMany()
                         .HasForeignKey("id_zdjecia")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Gatunek");
+
                     b.Navigation("Zdjecie");
+                });
+
+            modelBuilder.Entity("ZwierzePlus.Model.Ksiazeczka_zdrowia", b =>
+                {
+                    b.Navigation("Wpis");
                 });
 
             modelBuilder.Entity("ZwierzePlus.Model.Zwierze", b =>
