@@ -8,7 +8,7 @@ using ZwierzePlus.Model;
 namespace ZwierzePlus.Pages
 {
     [Authorize]
-    public class DodajKsiazeczke : PageModel
+    public class Dodaj_wpis : PageModel
     {
         [BindProperty]
         public Ksiazeczka_zdrowia Ksiazeczka { get; set; } = new();
@@ -25,21 +25,21 @@ namespace ZwierzePlus.Pages
 
         public List<Wpis> Wpisy { get; set; }
 
-        public DodajKsiazeczke(SchroniskoContext dbContext)
+        public Dodaj_wpis(SchroniskoContext dbContext)
         {
             _dbContext = dbContext;
         }
 
         public IActionResult OnGet(long zwierzeId)
         {
-            if(zwierzeId > 0)
+            if (zwierzeId > 0)
             {
                 ZwierzeProviderSingleton.SetZwierze(zwierzeId);
             }
-            
+
             ZwierzeId = ZwierzeProviderSingleton.GetZwierze();
 
-            FetchedKsiazeczka = _dbContext.Ksiazeczka_Zdrowia.Include(x=>x.Wpis).FirstOrDefault(x => x.id_zwierzecia == ZwierzeId);
+            FetchedKsiazeczka = _dbContext.Ksiazeczka_Zdrowia.Include(x => x.Wpis).FirstOrDefault(x => x.id_zwierzecia == ZwierzeId);
 
             if (FetchedKsiazeczka != null)
             {
@@ -50,25 +50,6 @@ namespace ZwierzePlus.Pages
             Ksiazeczka.id_zwierzecia = ZwierzeId;
 
             return Page();
-        }
-
-        public IActionResult OnPostKsiazeczka()
-        {
-            var zwierze = _dbContext.Zwierze.Find(ZwierzeId);
-
-            if (zwierze == null)
-            {
-                return NotFound();
-            }
-
-            Ksiazeczka.id_zwierzecia = zwierze.id_zwierzecia;
-
-            Ksiazeczka.Zwierze = zwierze;
-
-            _dbContext.Ksiazeczka_Zdrowia.Add(Ksiazeczka);
-            _dbContext.SaveChanges();
-
-            return RedirectToPage("/DodajKsiazeczke");
         }
 
         public IActionResult OnPostNowyWpis()
@@ -83,7 +64,7 @@ namespace ZwierzePlus.Pages
             _dbContext.Wpis.Add(NowyWpis);
             _dbContext.SaveChangesAsync();
 
-            return RedirectToPage("/DodajKsiazeczke");
+            return RedirectToPage("/Dodaj_wpis");
         }
     }
 }

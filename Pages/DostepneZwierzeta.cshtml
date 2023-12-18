@@ -62,8 +62,11 @@
                                 <form method="post" asp-page-handler="WyswietlZgloszenia" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
                                     <button type="submit" class="btn btn-primary">Wyświetl Zgłoszenia</button>
                                 </form>
+                                <form method="post" asp-page-handler="Wpisy" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
+                                    <button type="submit" class="btn btn-primary">Dodaj wpis</button>
+                                </form>
                                 <form method="post" asp-page-handler="Ksiazeczka" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
-                                    <button type="submit" class="btn btn-primary">Książeczka Zdrowia</button>
+                                    <button type="submit" class="btn btn-success">Utwórz Książeczkę</button>
                                 </form>
                                 <form method="post" asp-page-handler="Spotkanie" asp-route-id="@zwierze.id_zwierzecia" class="mr-2">
                                     <button type="submit" class="btn btn-success">Utwórz Spotkanie</button>

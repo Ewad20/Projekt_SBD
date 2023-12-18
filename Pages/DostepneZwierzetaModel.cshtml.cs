@@ -93,7 +93,18 @@ namespace ZwierzePlus.Pages
                 return NotFound();
             }
 
-            return RedirectToPage("./DodajKsiazeczke", new { zwierzeId = zwierze_ksiazeczka.id_zwierzecia });
+            return RedirectToPage("./Dodaj_ksiazeczke", new { zwierzeId = zwierze_ksiazeczka.id_zwierzecia });
+        }
+        public IActionResult OnPostWpisy(long id)
+        {
+            var zwierze_ksiazeczka = _dbContext.Zwierze.Find(id);
+
+            if (zwierze_ksiazeczka == null)
+            {
+                return NotFound();
+            }
+
+            return RedirectToPage("./Dodaj_wpis", new { zwierzeId = zwierze_ksiazeczka.id_zwierzecia });
         }
         public IActionResult OnPostSpotkanie(long id)
         {

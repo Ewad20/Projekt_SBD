@@ -14,7 +14,7 @@ namespace ZwierzePlus.Model
 
         [ForeignKey("id_zwierzecia")]
         public virtual Zwierze Zwierze { get; set; }
-        public List<Wpis> Wpis { get; set; }
+        public List<Wpis>? Wpis { get; set; }
 
     }
 }
